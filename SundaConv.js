@@ -3,14 +3,14 @@
  Released under GNU Public License
  see: http://www.gnu.org/copyleft/gpl.html
  */
- 
+
 ////////////////////////////////////////////////////////////////////////////
 /**
  * This array holds the look-up table for conversion from 
  * Latin to Sundanese
  */
 var UNISUNDA = new Array();
- 
+
     // panungtung
     UNISUNDA['+ng'] = '\u1B80';
     UNISUNDA['+r'] = '\u1B81';
@@ -20,7 +20,7 @@ var UNISUNDA = new Array();
     UNISUNDA['A'] = '\u1B83';
     UNISUNDA['I'] = '\u1B84';
     UNISUNDA['U'] = '\u1B85';
-    //'É'] = '\u1B86';
+    //'Ã‰'] = '\u1B86';
     UNISUNDA['\u00C9'] = '\u1B86';
     UNISUNDA['O'] = '\u1B87';
     UNISUNDA['E'] = '\u1B88';
@@ -59,7 +59,7 @@ var UNISUNDA = new Array();
     UNISUNDA['a'] = '';
     UNISUNDA['i'] = '\u1BA4';
     UNISUNDA['u'] = '\u1BA5';
-    //'é'] = '\u1BA6';
+    //'Ã©'] = '\u1BA6';
     UNISUNDA['\u00E9'] = '\u1BA6';
     UNISUNDA['o'] = '\u1BA7';
     UNISUNDA['e'] = '\u1BA8';
@@ -75,7 +75,7 @@ var UNISUNDA = new Array();
     UNISUNDA['7'] = '\u1BB7';
     UNISUNDA['8'] = '\u1BB8';
     UNISUNDA['9'] = '\u1BB9';
- 
+
 ////////////////////////////////////////////////////////////////////////////
     
 PAT_V      = 1;
@@ -86,13 +86,13 @@ PAT_KRV    = 5;
 PAT_KRVK   = 6;
 PAT_SILABA = 7;
 PAT_LAIN   = 0;
- 
+
 ////////////////////////////////////////////////////////////////////////////
 function sundaahir (huruf)
 ////////////////////////////////////////////////////////////////////////////
 {
     var retval = ''
- 
+
     if (huruf == 'h' || huruf == 'r' || huruf == 'ng') {
         retval = UNISUNDA['+' + huruf];
     } else {
@@ -101,8 +101,8 @@ function sundaahir (huruf)
     
     return retval;
 } // end sundaahir (...)
- 
- 
+
+
 ////////////////////////////////////////////////////////////////////////////
 /**
  * This functions converts the Latin input string (iStr) into Sundanese
@@ -112,11 +112,11 @@ function Latin2Sunda(iStr)
     var sundaText = '';
     
     iStr = iStr.toLowerCase();
- 
+
     var iLength = iStr.length;
     var idx = 0;
     var jump = 0;
- 
+
     var tStr = '';
     var oStr = '';
     var r;
@@ -127,7 +127,7 @@ function Latin2Sunda(iStr)
     // Pola V, VK, K, KV, KVK, KRV, KRVK:
     var KONS = 'kh|sy|[b-df-hj-mp-tv-z]|ng|ny|n';
     var VOK  = "[aiuo\u00E9]|eu|e";
-    //VOK  = '[aiuoé]|eu|e';
+    //VOK  = '[aiuoÃ©]|eu|e';
     var REP  = '[yrl]';
     var SILABA = '^';
     SILABA += '('+KONS+')?';             // group(1), K
@@ -213,8 +213,7 @@ function Latin2Sunda(iStr)
             r = iStr.match(KONSONAN);
             if (r != null) {
                 suku   = r[1];
-                if (polasuku == PAT_SILABA);
-                {
+                if (polasuku == PAT_SILABA) {
                     silaba = sundaahir(suku);
                 } else {
                     silaba = UNISUNDA[suku] + UNISUNDA['+O'];
@@ -248,19 +247,19 @@ function Latin2Sunda(iStr)
         idx += suku.length;
     
     }// end while
- 
+
     //return tStr + '&&' + oStr
     return oStr;
     //return tStr
 }
- 
+
 ////////////////////////////////////////////////////////////////////////////
 /**
  * This array holds the look-up table for conversion from 
  * Sundanese to Latin
  */
 var SUNDAUNI = new Array()
- 
+
     // konsonan ngalagena
     SUNDAUNI['\u1B8A'] = 'k' ;
     SUNDAUNI['\u1B8B'] = 'q' ;
@@ -291,17 +290,17 @@ var SUNDAUNI = new Array()
     // sora vokal
     SUNDAUNI['\u1BA4'] = 'i' ;
     SUNDAUNI['\u1BA5'] = 'u' ;
-    SUNDAUNI['\u1BA6'] = '\u00E9' ; // 'é'
+    SUNDAUNI['\u1BA6'] = '\u00E9' ; // 'Ã©'
     SUNDAUNI['\u1BA7'] = 'o' ;
     SUNDAUNI['\u1BA8'] = 'e' ;
     SUNDAUNI['\u1BA9'] = 'eu' ;
     SUNDAUNI['\u1BAA'] = '' ;
- 
+
     // vokal mandiri        
     SUNDAUNI['\u1B83'] = 'a' ;
     SUNDAUNI['\u1B84'] = 'i' ;
     SUNDAUNI['\u1B85'] = 'u' ;
-    SUNDAUNI['\u1B86'] = '\u00E9' ; // 'É';
+    SUNDAUNI['\u1B86'] = '\u00E9' ; // 'Ã‰';
     SUNDAUNI['\u1B87'] = 'o' ;
     SUNDAUNI['\u1B88'] = 'e' ;
     SUNDAUNI['\u1B89'] = 'eu' ;
@@ -315,7 +314,7 @@ var SUNDAUNI = new Array()
     SUNDAUNI['\u1B80'] = 'ng' ;
     SUNDAUNI['\u1B81'] = 'r' ;
     SUNDAUNI['\u1B82'] = 'h' ;
- 
+
     // angka
     SUNDAUNI['\u1BB0'] = '0'  ;
     SUNDAUNI['\u1BB1'] = '1'  ;
@@ -328,8 +327,8 @@ var SUNDAUNI = new Array()
     SUNDAUNI['\u1BB8'] = '8'  ;
     SUNDAUNI['\u1BB9'] = '9'  ;
 ////////////////////////////////////////////////////////////////////////////
- 
- 
+
+
 ////////////////////////////////////////////////////////////////////////////
 /**
  * This functions converts the Sundanese input string (iStr) into Latin
@@ -339,10 +338,10 @@ function Sunda2Latin(iStr)
     var iLength = iStr.length;
     var idx = 0;
     var jump = 0;
- 
+
     var tStr = '';
     var oStr = '';
- 
+
     // Pola KRV0K:
     var NGALAGENA    = '([\u1B8A-\u1BA0\u1BAE\u1BAF])';
     var VOKALMANDIRI = '([\u1B83-\u1B89])';
@@ -358,7 +357,7 @@ function Sunda2Latin(iStr)
     var suku;
     var silaba;
     var r;
- 
+
     while (idx < iLength) {
         suku = '';
         silaba = '';
@@ -422,14 +421,14 @@ function Sunda2Latin(iStr)
         iStr = iStr.substr(suku.length);
         idx += suku.length;
     }// end while
- 
+
     //return tStr + '&&' + oStr
     return oStr;
     //return tStr
 }
- 
+
 var locked = false
- 
+
 ////////////////////////////////////////////////////////////////////////////
 /**
  * This functions handles the UI event for conversion from Latin to Sunda
@@ -450,8 +449,8 @@ function btSunda2Latin()
         locked = false
     }
 }
- 
- 
+
+
 ////////////////////////////////////////////////////////////////////////////
 /**
  * This functions handles the UI event for conversion from Latin to Sunda
@@ -472,9 +471,9 @@ function btLatin2Sunda()
         locked = false;
     }
 }
- 
- 
- 
+
+
+
 ////////////////////////////////////////////////////////////////////////////
 function setBg(id,color)
 {
