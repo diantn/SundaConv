@@ -20,7 +20,7 @@ var UNISUNDA = new Array();
     UNISUNDA['A'] = '\u1B83';
     UNISUNDA['I'] = '\u1B84';
     UNISUNDA['U'] = '\u1B85';
-    //'É'] = '\u1B86';
+    //'ï¿½'] = '\u1B86';
     UNISUNDA['\u00C9'] = '\u1B86';
     UNISUNDA['O'] = '\u1B87';
     UNISUNDA['E'] = '\u1B88';
@@ -59,7 +59,7 @@ var UNISUNDA = new Array();
     UNISUNDA['a'] = '';
     UNISUNDA['i'] = '\u1BA4';
     UNISUNDA['u'] = '\u1BA5';
-    //'é'] = '\u1BA6';
+    //'ï¿½'] = '\u1BA6';
     UNISUNDA['\u00E9'] = '\u1BA6';
     UNISUNDA['o'] = '\u1BA7';
     UNISUNDA['e'] = '\u1BA8';
@@ -127,7 +127,7 @@ function Latin2Sunda(iStr)
     // Pola V, VK, K, KV, KVK, KRV, KRVK:
     var KONS = 'kh|sy|[b-df-hj-mp-tv-z]|ng|ny|n';
     var VOK  = "[aiuo\u00E9]|eu|e";
-    //VOK  = '[aiuoé]|eu|e';
+    //VOK  = '[aiuoï¿½]|eu|e';
     var REP  = '[yrl]';
     var SILABA = '^';
     SILABA += '('+KONS+')?';             // group(1), K
@@ -213,7 +213,7 @@ function Latin2Sunda(iStr)
             r = iStr.match(KONSONAN);
             if (r != null) {
                 suku   = r[1];
-                if (polasuku == PAT_SILABA);
+                if (polasuku == PAT_SILABA)
                 {
                     silaba = sundaahir(suku);
                 } else {
@@ -291,17 +291,17 @@ var SUNDAUNI = new Array()
     // sora vokal
     SUNDAUNI['\u1BA4'] = 'i' ;
     SUNDAUNI['\u1BA5'] = 'u' ;
-    SUNDAUNI['\u1BA6'] = '\u00E9' ; // 'é'
+    SUNDAUNI['\u1BA6'] = '\u00E9' ; // 'ï¿½'
     SUNDAUNI['\u1BA7'] = 'o' ;
     SUNDAUNI['\u1BA8'] = 'e' ;
     SUNDAUNI['\u1BA9'] = 'eu' ;
     SUNDAUNI['\u1BAA'] = '' ;
  
-    // vokal mandiri        
+    // vokal mandiri
     SUNDAUNI['\u1B83'] = 'a' ;
     SUNDAUNI['\u1B84'] = 'i' ;
     SUNDAUNI['\u1B85'] = 'u' ;
-    SUNDAUNI['\u1B86'] = '\u00E9' ; // 'É';
+    SUNDAUNI['\u1B86'] = '\u00E9' ; // 'ï¿½';
     SUNDAUNI['\u1B87'] = 'o' ;
     SUNDAUNI['\u1B88'] = 'e' ;
     SUNDAUNI['\u1B89'] = 'eu' ;
