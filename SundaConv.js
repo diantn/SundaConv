@@ -453,8 +453,6 @@ function btSunda2Latin(event) {
     }
 }
 
-
-
 ////////////////////////////////////////////////////////////////////////////
 /**
  * This functions handles the UI event for conversion from Latin to Sunda
