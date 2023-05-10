@@ -41,42 +41,46 @@
     <div id="page-wrap">
       <h1>Konvérsi Aksara Latin - Aksara Sunda</h1>
       <p class="hint">
-        Perhatosan: <strong>INSTALL</strong> fonta
+        Perhatosan: <strong>INSTALL</strong> font
         <a
           href="https://fonts.google.com/noto/specimen/Noto+Sans+Sundanese"
           >Noto Sans Sundanese</a
         >
       </p>
-      <h3>Téks Latin</h3>
+      <h3 id="latin-header">Téks Latin</h3>
       <textarea
         name="LatinTextBox"
         id="LatinText"
-        onkeyup="btLatin2Sunda()"
-        onfocus="setbg('LatinText','#e5fff3');"
-        onblur="btLatin2Sunda();setbg('LatinText','white')"
+        onkeyup="btLatin2Sunda(event)"
+        onfocus="setBg('LatinText','#e5fff3', event);"
+        onblur="btLatin2Sunda(event);setBg('LatinText','white', event)"
       ></textarea>
-      <br />
-      <div style="text-align: center">
-        <input value="Latin ka Sunda" type="button" onclick="btLatin2Sunda()" />
-        <input value="Sunda ka Latin" type="button" onclick="btSunda2Latin()" />
-      </div>
-      <h3>Téks Sunda</h3>
+      <input id="latin2sunda-button" value="Latin ka Sunda" type="button" onclick="btLatin2Sunda(event)" />
+      <input id="sunda2latin-button" value="Sunda ka Latin" type="button" onclick="btSunda2Latin(event)" />
+      <h3 id="sunda-header">Téks Sunda</h3>
       <textarea
         name="SundaTextBox"
         id="SundaText"
-        onkeyup="btSunda2Latin()"
-        onfocus="setbg('SundaText','#e5fff3');"
-        onblur="btSunda2Latin();setbg('SundaText','white')"
+        onkeyup="btSunda2Latin(event)"
+        onfocus="setBg('SundaText','#e5fff3', event);"
+        onblur="btSunda2Latin(event);setBg('SundaText','white', event)"
       ></textarea>
+      <input id="copy-sunda-text-button" value="Salin Aksara Sunda" type="button" onclick="copySundaText()" />  
       <p class="footer">
         (c) 2008
         <a href="http://sabilulungan.org/?q=Dian">Dian Tresna Nugraha</a>.
         Released under <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
         Get source package:
         <a href="http://sabilulungan.org/aksara/files/makro/SundaConv-1.1.zip"
-          >SundaConv-1.2.zip</a
-        >.
+          >SundaConv-1.2.zip</a>.
+        <br>
+        (c) 2023
+        <a href="https://github.com/rescenic">Muhammad Ridwan Hakim</a>. 
+        Released under <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL</a>. 
+        Get source package: 
+        <a href="https://github.com/rescenic/SundaConv/archive/refs/heads/master.zip" 
+          >SundaConv-1.3.zip</a>.
       </p>
-    </div>
+    </div>    
   </body>
 </html>

@@ -434,24 +434,27 @@ var locked = false
 /**
  * This functions handles the UI event for conversion from Latin to Sunda
  */
-function btSunda2Latin()
-{
-    if (locked == false)
-    {
-    
-        locked = true
-        
-        var sundaText = document.getElementById('SundaText').value
-    
+function btSunda2Latin(event) {
+    if (locked == false) {
+        locked = true;
+        var sundaText = document.getElementById('SundaText').value;
         var latinText = Sunda2Latin(sundaText);
-        
-        document.getElementById('LatinText').value = latinText;
-    
-        locked = false
+
+        // Check if btSunda2Latin button was clicked
+        if (event && event.type === 'click' && event.target.id === 'sunda2latin-button') {
+            document.getElementById('SundaText').value = latinText;
+            document.getElementById('latin-header').innerHTML = 'Téks Sunda';
+            document.getElementById('sunda-header').innerHTML = 'Téks Latin';
+        } else {
+            document.getElementById('LatinText').value = latinText;
+        }
+
+        locked = false;
     }
 }
- 
- 
+
+
+
 ////////////////////////////////////////////////////////////////////////////
 /**
  * This functions handles the UI event for conversion from Latin to Sunda
@@ -469,14 +472,30 @@ function btLatin2Sunda()
         
         document.getElementById('SundaText').value = sundaText;
         
+        // Change the text of the header for Latin to Sunda
+        if (event && event.type === 'click' && event.target.id === 'latin2sunda-button') {
+            document.getElementById('latin-header').innerHTML = 'Téks Latin';
+            document.getElementById('sunda-header').innerHTML = 'Téks Sunda';
+        }
+
         locked = false;
     }
 }
- 
- 
- 
+
 ////////////////////////////////////////////////////////////////////////////
-function setBg(id,color)
-{
+function setBg(id, color, event) {
+    if (event && event.type === "keydown") {
+        if (event.key === "Control" || event.key === "c" || event.key === "a" || event.key === "v") {
+        return;
+        }
+    }
     document.getElementById(id).style.background = color;
 }
+
+////////////////////////////////////////////////////////////////////////////
+function copySundaText() {
+    const sundaText = document.getElementById('SundaText');
+    sundaText.select();
+    sundaText.setSelectionRange(0, 99999); // For mobile devices
+    document.execCommand('copy');
+  }
